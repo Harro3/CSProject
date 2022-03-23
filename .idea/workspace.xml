@@ -13,6 +13,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -40,7 +41,7 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Invaders">
     <configuration name="&lt;template&gt;" type="TestNG" default="true" selected="false">
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -49,6 +50,11 @@
       <option name="MAIN_CLASS_NAME" value="Entities" />
       <module name="CSProject" />
       <option name="PROGRAM_PARAMETERS" value="sdfsdf" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Invaders" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Invaders" />
+      <module name="CSProject" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
