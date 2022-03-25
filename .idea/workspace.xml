@@ -46,14 +46,30 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
     </configuration>
+    <configuration name="DefaultCritter" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="DefaultCritter" />
+      <module name="CSProject" />
+      <method v="2" />
+    </configuration>
     <configuration name="Entities" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Entities" />
       <module name="CSProject" />
       <option name="PROGRAM_PARAMETERS" value="sdfsdf" />
       <method v="2" />
     </configuration>
+    <configuration name="InvaderGameState" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="InvaderGameState" />
+      <module name="CSProject" />
+      <method v="2" />
+    </configuration>
     <configuration name="Invaders" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Invaders" />
+      <module name="CSProject" />
+      <option name="PROGRAM_PARAMETERS" value=" " />
+      <method v="2" />
+    </configuration>
+    <configuration name="Shooter" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Shooter" />
       <module name="CSProject" />
       <method v="2" />
     </configuration>
