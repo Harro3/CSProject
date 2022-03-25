@@ -12,6 +12,7 @@ public class DefaultCritter implements Critter {
     float vel;
 
     int dir; // direction of the entity -1 = left | 1 = right | 0 = not moving
+    char moveAxis = 'x'; // axis of movement
 
     Color color;
 
@@ -25,16 +26,23 @@ public class DefaultCritter implements Critter {
     public void move() {
         prevX = x;
         prevY = y;
-        this.x += this.vel * this.dir;
+        if (moveAxis == 'x')
+            this.x += this.vel * this.dir;
+        else
+            this.y += this.vel * this.dir;
 
         this.draw(this.color);
     }
 
     @Override
     public void draw(Color color) {
-        StdDraw.setPenColor(gameState.bgColor); // covering the old drawing
-        StdDraw.filledCircle(prevX, prevY, rad * 1.1);
         StdDraw.setPenColor(color);
         StdDraw.filledCircle(x, y, rad);
     }
+
+    @Override
+    public void update() {
+    }
+
+    
 }

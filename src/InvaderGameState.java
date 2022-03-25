@@ -1,12 +1,12 @@
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 // game state class to handle every game object
 public class InvaderGameState {
     Color bgColor;
     int canSize;
 
-    Shooter shooter;
+    public Shooter shooter;
+    public Missile missiles; // recursive list implementation of the missiles
 
     public InvaderGameState(Color bgColor, int canSize) {
         // window configuration
@@ -19,18 +19,25 @@ public class InvaderGameState {
         shooter = new Shooter(this, 0.01f, 0.05f, Color.WHITE);
     }
 
+    public void moveObjects() {
+        shooter.move();
+
+    }
+
     public void update() {
-        // key reading for the shooter's movement
-        if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('a')) && shooter.x > shooter.rad * 1.3) {
-            shooter.dir = -1;
-        } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('d')) && shooter.x < 1 - shooter.rad * 1.3) {
-            shooter.dir = 1;
-        } else {
-            shooter.dir = 0;
+        shooter.update();
+
+
+        if (missiles != null) {
+            missiles.update();
+            if (missiles.y > 1 + missiles.rad * 1.2) {
+                // removing last missile once out of the screen
+                this.missiles = this.missiles.next;
+            }
         }
 
 
         // moving game objects
-        shooter.move();
+        moveObjects();
     }
 }

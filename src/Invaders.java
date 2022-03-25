@@ -14,6 +14,10 @@ public class Invaders {
         // main loop
         while (run) {
 
+            /*if (gameState.missiles != null) {
+                System.out.println(gameState.missiles.getLength());
+            }*/
+
             gameState.update();
 
             // loop break

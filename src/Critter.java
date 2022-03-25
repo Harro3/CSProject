@@ -5,4 +5,6 @@ public interface Critter {
 
     void draw(Color c);
 
+    void update();
+
 }
