@@ -51,6 +51,11 @@
       <module name="CSProject" />
       <method v="2" />
     </configuration>
+    <configuration name="Enemy" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Enemy" />
+      <module name="CSProject" />
+      <method v="2" />
+    </configuration>
     <configuration name="Entities" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Entities" />
       <module name="CSProject" />

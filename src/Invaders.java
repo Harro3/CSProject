@@ -11,12 +11,14 @@ public class Invaders {
         // game state initialisation
         InvaderGameState gameState = new InvaderGameState(Color.BLACK, 500);
 
+
         // main loop
         while (run) {
 
             /*if (gameState.missiles != null) {
                 System.out.println(gameState.missiles.getLength());
             }*/
+
 
             gameState.update();
 
