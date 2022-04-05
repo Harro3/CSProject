@@ -3,7 +3,9 @@ import java.awt.event.KeyEvent;
 
 // main class handling the game loop
 public class Invaders {
+
     public static void main(String[] args) {
+
         StdDraw.enableDoubleBuffering();
 
         int timeStep = 20;
@@ -14,11 +16,6 @@ public class Invaders {
 
         // main loop
         while (run) {
-
-            /*if (gameState.missiles != null) {
-                System.out.println(gameState.missiles.getLength());
-            }*/
-
 
             gameState.update();
 

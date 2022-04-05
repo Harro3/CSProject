@@ -2,6 +2,7 @@ import java.awt.*;
 
 // game state class to handle every game object
 public class InvaderGameState {
+
     Color bgColor;
     int canSize;
     int enemyNb = 55;

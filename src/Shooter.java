@@ -14,6 +14,7 @@ public class Shooter extends DefaultCritter {
         this.y = 0.1f;
         this.x = 0.5f;
 
+
     }
 
     public void update() {

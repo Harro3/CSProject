@@ -5,9 +5,7 @@ public class DefaultCritter implements Critter {
     // Current position
     float x;
     float y;
-    // previous position
-    float prevX;
-    float prevY;
+
     float rad = 0.05f;
     float vel;
 
@@ -24,8 +22,6 @@ public class DefaultCritter implements Critter {
 
     @Override
     public void move() {
-        prevX = x;
-        prevY = y;
         if (moveAxis == 'x')
             this.x += this.vel * this.dir;
         else
@@ -44,5 +40,5 @@ public class DefaultCritter implements Critter {
     public void update() {
     }
 
-    
+
 }
