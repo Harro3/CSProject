@@ -14,6 +14,8 @@ public class DefaultCritter implements Critter {
 
     Color color;
 
+    String imageName = "";
+
     InvaderGameState gameState;
 
     public DefaultCritter() {
@@ -27,13 +29,22 @@ public class DefaultCritter implements Critter {
         else
             this.y += this.vel * this.dir;
 
-        this.draw(this.color);
+        if (this.imageName.isEmpty()) {
+            this.draw(this.color);
+
+        } else {
+            this.draw();
+        }
     }
 
     @Override
     public void draw(Color color) {
         StdDraw.setPenColor(color);
         StdDraw.filledCircle(x, y, rad);
+    }
+
+    public void draw() {
+        StdDraw.picture(x, y, imageName, rad * 2, rad * 2);
     }
 
     @Override

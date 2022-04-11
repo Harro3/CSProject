@@ -14,7 +14,7 @@ public class Shooter extends DefaultCritter {
         this.y = 0.1f;
         this.x = 0.5f;
 
-
+        this.imageName = "images/shooter.png";
     }
 
     public void update() {
@@ -39,6 +39,8 @@ public class Shooter extends DefaultCritter {
     }
 
     void fire() {
+        StdAudio.playInBackground("audio/soundEffects/laserShoot.wav");
+
         Missile newMissile = new Missile(gameState, x, y, 0.03f, 1, 0.01f, StdDraw.GREEN);
         if (gameState.missiles == null) { // if no missile exists
             gameState.missiles = newMissile;

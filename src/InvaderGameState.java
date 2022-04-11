@@ -5,8 +5,11 @@ public class InvaderGameState {
 
     Color bgColor;
     int canSize;
-    int enemyNb = 55;
-    int enemiesPerRow = 11; // more centered with an odd number
+    int enemyNb;
+    int enemiesPerRow; // more centered with an odd number
+    float fireProb;
+    float enemyBulletSpeed;
+    public float enemyVel;
 
     // these variables handle the changing in direction of the enemies
     // they represent the sides of the enemy batch
@@ -16,12 +19,23 @@ public class InvaderGameState {
     public Shooter shooter;
     public Missile missiles; // recursive list implementation of the missiles
 
-    public Enemy[] enemyArray = new Enemy[enemyNb];
-    public float enemyVel = 0.005f;
+    public Enemy[] enemyArray;
     public float enemyRad;
     public float enemyDir = 1;
+    public float accRate;
 
-    public InvaderGameState(Color bgColor, int canSize) {
+    public boolean acc = false;
+
+    public InvaderGameState(Color bgColor, int canSize, int enemyNb, int enemiesPerRow, float fireProb, float enemyVel, float enemyBulletSpeed, float accRate) {
+        this.enemyNb = enemyNb;
+        this.enemiesPerRow = enemiesPerRow;
+        this.fireProb = fireProb;
+        this.enemyVel = enemyVel;
+        this.enemyBulletSpeed = enemyBulletSpeed;
+        this.accRate = accRate;
+
+        enemyArray = new Enemy[enemyNb];
+
         // window configuration
         this.canSize = canSize;
         this.bgColor = bgColor;
@@ -57,7 +71,7 @@ public class InvaderGameState {
                 //this parts is used to make the enemies gradually from the center and alternating left to right
                 float x = parityOffset + .5f + (float) ((intX + 1) / 2) * (float) Math.pow(-1, intX) * dist;
                 float y = 1f - dist - intY * dist;
-                arr[intY * enemiesPerRow + intX] = new Enemy(this, x, y, initialVel, rad, Color.RED);
+                arr[intY * enemiesPerRow + intX] = new Enemy(this, x, y, initialVel, rad, fireProb, enemyBulletSpeed, Color.RED);
 
             }
         }
@@ -114,9 +128,15 @@ public class InvaderGameState {
             if (enemyArray[i] == null) {
                 continue;
             }
+            if (acc) {
+                enemyArray[i].vel *= accRate;
+                enemyVel = enemyArray[i].vel;
+            }
             enemyArray[i].update(changeDir);
 
         }
+
+        acc = false;
 
     }
 }

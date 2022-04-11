@@ -19,22 +19,36 @@ public class Missile extends DefaultCritter {
     // function that checks if a collision has occurred
     public boolean checkCollision() {
         boolean res = false;
-        for (int i = 0; i < gameState.enemyNb; i++) {
-            if (gameState.enemyArray[i] == null) continue;
-            float deltaX = this.x - gameState.enemyArray[i].x;
-            float deltaY = this.y - gameState.enemyArray[i].y;
+        if (dir == 1) {
+            for (int i = 0; i < gameState.enemyNb; i++) {
+                if (gameState.enemyArray[i] == null) continue;
+                float deltaX = this.x - gameState.enemyArray[i].x;
+                float deltaY = this.y - gameState.enemyArray[i].y;
 
-            // distance between the missile and the enemy
+                // distance between the missile and the enemy
+                float dist = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+                if (dist <= this.rad + gameState.enemyArray[i].rad) {
+                    StdAudio.playInBackground("audio/soundEffects/explosion.wav");
+                    gameState.enemyArray[i] = null; // delete enemy
+                    res = true;
+                    gameState.acc = true;
+                    gameState.updateLeftEnBound(); // update the bounds
+                    gameState.updateRightBound();
+                    break;
+                }
+            }
+        } else {
+            float deltaX = gameState.shooter.x - this.x;
+            float deltaY = gameState.shooter.y - this.y;
+
             float dist = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-            if (dist <= this.rad + gameState.enemyArray[i].rad) {
-                gameState.enemyArray[i] = null; // delete enemy
-                res = true;
-                gameState.updateLeftEnBound(); // update the bounds
-                gameState.updateRightBound();
-                break;
+            if (dist <= this.rad + gameState.shooter.rad) {
+                System.exit(0);
             }
         }
+
         return res;
     }
 
