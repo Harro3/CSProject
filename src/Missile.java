@@ -45,7 +45,7 @@ public class Missile extends DefaultCritter {
             float dist = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
             if (dist <= this.rad + gameState.shooter.rad) {
-                System.exit(0);
+                gameState.winner = 2;
             }
         }
 

@@ -26,6 +26,8 @@ public class InvaderGameState {
 
     public boolean acc = false;
 
+    public int winner = 0;
+
     public InvaderGameState(Color bgColor, int canSize, int enemyNb, int enemiesPerRow, float fireProb, float enemyVel, float enemyBulletSpeed, float accRate) {
         this.enemyNb = enemyNb;
         this.enemiesPerRow = enemiesPerRow;
@@ -33,6 +35,8 @@ public class InvaderGameState {
         this.enemyVel = enemyVel;
         this.enemyBulletSpeed = enemyBulletSpeed;
         this.accRate = accRate;
+
+        this.winner = 0;
 
         enemyArray = new Enemy[enemyNb];
 
@@ -97,7 +101,7 @@ public class InvaderGameState {
     }
 
 
-    public void update() {
+    public int update() {
 
         shooter.update();
 
@@ -124,10 +128,13 @@ public class InvaderGameState {
         if (changeDir) {
             enemyDir *= -1;
         }
+
+        boolean win = true;
         for (int i = 0; i < enemyNb; i++) {
             if (enemyArray[i] == null) {
                 continue;
             }
+            win = false;
             if (acc) {
                 enemyArray[i].vel *= accRate;
                 enemyVel = enemyArray[i].vel;
@@ -135,8 +142,12 @@ public class InvaderGameState {
             enemyArray[i].update(changeDir);
 
         }
+        if (win) {
+            this.winner = 1;
+        }
 
         acc = false;
 
+        return this.winner;
     }
 }

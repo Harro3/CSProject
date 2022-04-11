@@ -13,7 +13,7 @@ public class Menu extends MouseAdapter {
     public enum STATE {
         MENU,
         GAME,
-        DIFFICULTY
+        DIFFICULTY,
     }
 
     public STATE gameLevel;
@@ -63,18 +63,20 @@ public class Menu extends MouseAdapter {
     }*/
 
 
-    public void update() {
+    public void update(int winner) {
 
         if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('x'))) //X key is pressed to start game
         {
             gameLevel = STATE.GAME;
         } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('y'))) {
             gameLevel = STATE.DIFFICULTY;
-            
+
 
         } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('m'))) {
             gameLevel = STATE.MENU;
             draw();
+        } else if (winner != 0) {
+            // game over menu
         }
 
 

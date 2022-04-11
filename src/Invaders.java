@@ -20,13 +20,14 @@ public class Invaders {
 
         int timeStep = 20;
         boolean run = true;
+        int winner = 0; // 0 = game state | 1 = shooter wins | 2 = shooter loses
         // game state initialisation
         InvaderGameState gameState = null;
 
         Menu MainMenu = new Menu();
 
         while (run) {
-            MainMenu.update();
+            MainMenu.update(winner);
 
             if (MainMenu.gameLevel.equals(Menu.STATE.MENU)) {
 
@@ -39,7 +40,7 @@ public class Invaders {
                 gameState = null;
 
             } else if (MainMenu.gameLevel.equals(Menu.STATE.DIFFICULTY)) {
-                
+
 
             } else if (MainMenu.gameLevel.equals(Menu.STATE.GAME)) {
                 // loop break
@@ -47,10 +48,11 @@ public class Invaders {
                     gameState = new InvaderGameState(Color.BLACK, 500, 55, 11, 0.001f, 0.005f, 0.005f, 1.02f);
                 }
 
+                System.out.println(gameState.winner);
                 if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('q'))) {
                     run = false;
                 }
-                gameState.update();
+                winner = gameState.update();
 
                 // drawing current game state
                 StdDraw.show();
