@@ -2,8 +2,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class Shooter extends DefaultCritter {
-    int initialCoolDown = 5; // cool down for the missiles
+    int initialCoolDown = 8; // cool down for the missiles
     int coolDown = 0;
+
+    float rotSpeed = 2;
 
     public Shooter(InvaderGameState gameState, float vel, float rad, Color color) {
         this.color = color;
@@ -20,12 +22,17 @@ public class Shooter extends DefaultCritter {
     public void update() {
         StdDraw.clear(gameState.bgColor);
         // key reading for the shooter's movement
-        if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('a')) && x > rad * 1.3) {
-            dir = -1;
-        } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('d')) && x < 1 - rad * 1.3) {
-            dir = 1;
-        } else {
-            dir = 0;
+        if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('z')) && x > rad * 1.3) {
+            this.x -= vel;
+        } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('c')) && x < 1 - rad * 1.3) {
+            this.x += vel;
+        }
+
+        // key reading for the shooter's rotation
+        if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('d')) && (this.angle > 45)) {
+            this.angle -= rotSpeed;
+        } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('a')) && (this.angle < 135)) {
+            this.angle += rotSpeed;
         }
 
         if (coolDown > 0) {
@@ -41,7 +48,7 @@ public class Shooter extends DefaultCritter {
     void fire() {
         StdAudio.playInBackground("audio/soundEffects/laserShoot.wav");
 
-        Missile newMissile = new Missile(gameState, x, y, 0.03f, 1, 0.01f, StdDraw.GREEN);
+        Missile newMissile = new Missile(gameState, x, y, 0.03f, "Shooter", 0.01f, StdDraw.GREEN);
         if (gameState.missiles == null) { // if no missile exists
             gameState.missiles = newMissile;
         } else { // if the list is already initialized

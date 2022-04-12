@@ -21,7 +21,7 @@ public class InvaderGameState {
 
     public Enemy[] enemyArray;
     public float enemyRad;
-    public float enemyDir = 1;
+    public double enemyAngle = 0;
     public float accRate;
 
     public boolean acc = false;
@@ -118,15 +118,15 @@ public class InvaderGameState {
             }
             break;
         }
-        shooter.move();
+        shooter.draw();
 
-        float inc = enemyVel * enemyDir; // increment for the bounds of the enemy batch
+        float inc = enemyVel * (float) Math.cos((double) enemyAngle * Math.PI / 180f); // increment for the bounds of the enemy batch
         this.leftEnBound += inc;
         this.rightEnBound += inc;
         // says if a change in direction needs to be made
         boolean changeDir = inc > 0 && rightEnBound >= 1 || inc < 0 && leftEnBound <= 0;
         if (changeDir) {
-            enemyDir *= -1;
+            enemyAngle = (enemyAngle + 180) % 360;
         }
 
         boolean win = true;

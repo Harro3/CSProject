@@ -48,7 +48,7 @@ public class Invaders {
                     gameState = new InvaderGameState(Color.BLACK, 500, 55, 11, 0.001f, 0.005f, 0.005f, 1.02f);
                 }
 
-                System.out.println(gameState.winner);
+                //System.out.println(gameState.winner);
                 if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('q'))) {
                     run = false;
                 }

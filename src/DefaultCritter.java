@@ -6,11 +6,10 @@ public class DefaultCritter implements Critter {
     float x;
     float y;
 
+    // radius, velocity and angle in degrees of the entity
     float rad = 0.05f;
     float vel;
-
-    int dir; // direction of the entity -1 = left | 1 = right | 0 = not moving
-    char moveAxis = 'x'; // axis of movement
+    int angle = 90;
 
     Color color;
 
@@ -24,10 +23,9 @@ public class DefaultCritter implements Critter {
 
     @Override
     public void move() {
-        if (moveAxis == 'x')
-            this.x += this.vel * this.dir;
-        else
-            this.y += this.vel * this.dir;
+        // converting the angles to radian and then updating the position
+        this.x += this.vel * Math.cos((double) this.angle * Math.PI / 180f);
+        this.y += this.vel * Math.sin((double) this.angle * Math.PI / 180f);
 
         if (this.imageName.isEmpty()) {
             this.draw(this.color);
@@ -44,7 +42,12 @@ public class DefaultCritter implements Critter {
     }
 
     public void draw() {
-        StdDraw.picture(x, y, imageName, rad * 2, rad * 2);
+        // only the shooter needs to appear rotated
+        if (this.equals(gameState.shooter)) {
+            StdDraw.picture(x, y, imageName, rad * 2, rad * 2, this.angle - 90);
+        } else {
+            StdDraw.picture(x, y, imageName, rad * 2, rad * 2);
+        }
     }
 
     @Override

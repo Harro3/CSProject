@@ -3,7 +3,9 @@ import java.awt.*;
 
 public class Missile extends DefaultCritter {
 
-    public Missile(InvaderGameState gameState, float x, float y, float vel, int dir, float rad, Color color) {
+    String type = ""; // name of the class that fired the missile
+
+    public Missile(InvaderGameState gameState, float x, float y, float vel, String type, float rad, Color color) {
         this.color = color;
         this.vel = vel;
         this.rad = rad;
@@ -12,14 +14,19 @@ public class Missile extends DefaultCritter {
         this.x = x;
         this.y = y;
 
-        this.moveAxis = 'y';
-        this.dir = dir;
+        this.type = type;
+        if (type.equals("Shooter")) {
+            this.angle = gameState.shooter.angle;
+        } else {
+            this.angle = -90;
+        }
     }
 
     // function that checks if a collision has occurred
     public boolean checkCollision() {
         boolean res = false;
-        if (dir == 1) {
+        if (type.equals("Shooter")) {
+            // checking collision with all the enemies
             for (int i = 0; i < gameState.enemyNb; i++) {
                 if (gameState.enemyArray[i] == null) continue;
                 float deltaX = this.x - gameState.enemyArray[i].x;
@@ -39,6 +46,7 @@ public class Missile extends DefaultCritter {
                 }
             }
         } else {
+            // checking collision with the shooter
             float deltaX = gameState.shooter.x - this.x;
             float deltaY = gameState.shooter.y - this.y;
 
