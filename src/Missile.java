@@ -36,6 +36,7 @@ public class Missile extends DefaultCritter {
                 float dist = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
                 if (dist <= this.rad + gameState.enemyArray[i].rad) {
+                    gameState.shooter.score += 10;
                     StdAudio.playInBackground("audio/soundEffects/explosion.wav");
                     gameState.enemyArray[i] = null; // delete enemy
                     res = true;

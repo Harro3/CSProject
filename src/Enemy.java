@@ -29,6 +29,9 @@ public class Enemy extends DefaultCritter {
         if (Math.random() < fireProb) {
             fire();
         }
+        if (this.y < gameState.shooter.y) {
+            gameState.winner = 2;
+        }
         this.move();
     }
 

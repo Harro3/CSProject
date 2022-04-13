@@ -6,6 +6,7 @@ public class Shooter extends DefaultCritter {
     int coolDown = 0;
 
     float rotSpeed = 2;
+    int score = 0;
 
     public Shooter(InvaderGameState gameState, float vel, float rad, Color color) {
         this.color = color;
@@ -42,7 +43,8 @@ public class Shooter extends DefaultCritter {
             coolDown = initialCoolDown;
         }
 
-
+        StdDraw.setPenColor(Color.WHITE);
+        StdDraw.text(0.1, 0.1, "Score: " + this.score);
     }
 
     void fire() {

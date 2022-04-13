@@ -14,6 +14,8 @@ public class Menu extends MouseAdapter {
         MENU,
         GAME,
         DIFFICULTY,
+        LOSE,
+        WIN
     }
 
     public STATE gameLevel;
@@ -75,12 +77,23 @@ public class Menu extends MouseAdapter {
         } else if (StdDraw.isKeyPressed(KeyEvent.getExtendedKeyCodeForChar('m'))) {
             gameLevel = STATE.MENU;
             draw();
-        } else if (winner != 0) {
-            // game over menu
+        } else if (winner == 1) {
+            gameLevel = STATE.WIN;
+
+            StdDraw.picture(0.5, 0.5, "images/Win.png", 1.0, 1.0);
+            StdDraw.show();
+            System.out.println("Win win!");
+
+
+        } else if (winner == 2) {
+            gameLevel = STATE.LOSE;
+            boolean x = true;
+
+            StdDraw.picture(0.5, 0.5, "images/GameOver.png");
+
+
         }
 
 
     }
-
-
 }
